@@ -1,0 +1,3107 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY daml "http://www.daml.org/2001/03/daml+oil#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.owl-ontologies.com/mason.owl#"
+     xml:base="http://www.owl-ontologies.com/mason.owl"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:daml="http://www.daml.org/2001/03/daml+oil#">
+    <owl:Ontology rdf:about="http://www.owl-ontologies.com/mason.owl">
+        <rdfs:label xml:lang="en">MAnufacturing&apos;s Semantics Ontology: Ontology of tools and concepts of industrial manufacturing</rdfs:label>
+        <rights>S. Lemaignan, A. Siadat, J.-Y. Dantan
+LGIPM - ´ Ecole Nationale Superieure d’Arts et Metiers, France</rights>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#rights -->
+
+    <owl:AnnotationProperty rdf:about="http://www.owl-ontologies.com/mason.owl#rights">
+        <rights>S. Lemaignan, A. Siadat, J.-Y. Dantan
+LGIPM - ´ Ecole Nationale Superieure d’Arts et Metiers, France</rights>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#comment -->
+
+    <rdf:Description rdf:about="&rdfs;comment">
+        <rights>MAnufacturing&apos;s Semantics ONtology</rights>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#allowedProcessFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#allowedProcessFor">
+        <rdfs:label xml:lang="en">allowed process for</rdfs:label>
+        <rdfs:comment>Binds a process to the materials or entities on which it is possible</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#ManufacturingOperation"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/mason.owl#isMachinableByProcess"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#GeometricEntityForManufacturing"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#RawMaterial"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#assembles -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#assembles">
+        <rdfs:label xml:lang="en">assembles</rdfs:label>
+        <rdfs:comment>Binds a system or assembly to its subelements</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#System"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/mason.owl#isAPartOfAssembly"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#FinishedPart"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Set"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#becomes -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#becomes">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">becomes</rdfs:label>
+        <rdfs:comment>Defines a piece &quot;in the making&quot;</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#FinishedPart"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#Semi-finishedPart"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#contains -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#contains">
+        <rdfs:label xml:lang="en">contains</rdfs:label>
+        <rdfs:comment>Bind a material resource to its location</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#GeographicResource"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#MaterialResource"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#enablesRealisationOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#enablesRealisationOf">
+        <rdfs:label xml:lang="en">enables realisation of</rdfs:label>
+        <rdfs:comment>Links one or more operations to a machine</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#MachineResource"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#LogisticOperation"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#ManufacturingOperation"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#execute -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#execute">
+        <rdfs:label xml:lang="en">execute</rdfs:label>
+        <rdfs:comment>Links operation with human resource</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#HumanResource"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#Operation"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/mason.owl#isExecutedBy"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#hasShape -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#hasShape">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label rdf:datatype="&xsd;string">has shape</rdfs:label>
+        <rdfs:comment>Links a Geometric flaw with a shape</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#Shape"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Blank"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#EntityGeometricFlaw"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#hasSymmetry -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#hasSymmetry">
+        <rdfs:label rdf:datatype="&xsd;string">has symmetry</rdfs:label>
+        <rdfs:comment xml:lang="en">Describe symetries of a part or an assembly</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#AssemblyEntity"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#Symmetry"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#includesRes -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#includesRes">
+        <rdfs:label rdf:datatype="&xsd;string">includes resource</rdfs:label>
+        <rdfs:comment>List of geographic sub-entities included in a geographical entity</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#GeographicResource"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#GeographicResource"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#isAPartOfAssembly -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#isAPartOfAssembly">
+        <rdfs:label rdf:datatype="&xsd;string">is a part of assembly</rdfs:label>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#System"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#FinishedPart"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Set"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#isExecutedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#isExecutedBy">
+        <rdfs:label rdf:datatype="&xsd;string">is executed by</rdfs:label>
+        <rdfs:comment>Links an operation to the human resource needed to achieve it</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#HumanResource"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#Operation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#isIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#isIn">
+        <rdfs:label rdf:datatype="&xsd;string">is in</rdfs:label>
+        <rdfs:comment>Refers to a geographic resource that is included in another geographic resource.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#GeographicResource"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#GeographicResource"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/mason.owl#includesRes"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#isMachinableByProcess -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#isMachinableByProcess">
+        <rdfs:label xml:lang="en">is machinable by process</rdfs:label>
+        <rdfs:comment xml:lang="en">Bind a raw material or a geometric entity to acceptable manufacturing processes</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#ManufacturingOperation"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#GeometricEntityForManufacturing"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#RawMaterial"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#isMachinableWithTool -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#isMachinableWithTool">
+        <rdfs:label xml:lang="en">is machinable with tool</rdfs:label>
+        <rdfs:comment xml:lang="en">List tools able to tool this material</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#RawMaterial"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#Tool"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/mason.owl#toolUsableOn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#isMadeOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#isMadeOf">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label rdf:datatype="&xsd;string">is made of</rdfs:label>
+        <rdfs:comment xml:lang="en">Link a part to the material it is made of</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#RawMaterial"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#Semi-finishedPart"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#isUsedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#isUsedBy">
+        <rdfs:label rdf:datatype="&xsd;string">is used by</rdfs:label>
+        <rdfs:comment xml:lang="en">Machine tools which use a given tool</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#MachineTool"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#Tool"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ofTopology -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#ofTopology">
+        <rdfs:label xml:lang="en">of topology</rdfs:label>
+        <rdfs:comment>Describes the topology of an entity</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#GeometricFlawBetweenEntities"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#Topology"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#previousOperation -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#previousOperation">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">previous operation</rdfs:label>
+        <rdfs:comment>Describes the previous operation of the current operation</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#ManufacturingOperation"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#ManufacturingOperation"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#requiredToolFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#requiredToolFor">
+        <rdfs:label rdf:datatype="&xsd;string">required tool for</rdfs:label>
+        <rdfs:comment xml:lang="en">List operations for which the tool is required</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#ManufacturingOperation"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#Tool"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/mason.owl#requiresTool"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#requiresMachine -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#requiresMachine">
+        <rdfs:label rdf:datatype="&xsd;string">requires machine</rdfs:label>
+        <rdfs:comment>Connects an operation to the machine resource needed to generate it</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#MachineResource"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/mason.owl#enablesRealisationOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#LogisticOperation"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#ManufacturingOperation"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#requiresTool -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#requiresTool">
+        <rdfs:label rdf:datatype="&xsd;string">requires tool</rdfs:label>
+        <rdfs:comment>Connects a manufacturing operation to the tool that allows it to be generated</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#ManufacturingOperation"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#Tool"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#toolUsableOn -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#toolUsableOn">
+        <rdfs:label xml:lang="en">usable on</rdfs:label>
+        <rdfs:comment xml:lang="en">Bind a tool to all the raw material it can tool</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#RawMaterial"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#Tool"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#usesTool -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/mason.owl#usesTool">
+        <rdfs:label rdf:datatype="&xsd;string">uses tool</rdfs:label>
+        <rdfs:comment>Binds a machine-tool to the tools it uses.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#MachineTool"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/mason.owl#Tool"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/mason.owl#isUsedBy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#corrugation -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/mason.owl#corrugation">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label>has corrugation</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#GeometricFlaw2ndOrder"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#dimensionX -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/mason.owl#dimensionX">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label rdf:datatype="&xsd;string">dimension along X axis</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;float"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Blank"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#FinishedPart"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#dimensionY -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/mason.owl#dimensionY">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label rdf:datatype="&xsd;string">dimension along Y axis</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;float"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Blank"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#FinishedPart"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#dimensionZ -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/mason.owl#dimensionZ">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label rdf:datatype="&xsd;string">dimension along Z axis</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;float"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Blank"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#FinishedPart"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#fillingRate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/mason.owl#fillingRate">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">filling rate</rdfs:label>
+        <rdfs:comment>Represents the filling rate of a &apos;blank&apos; part</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#Blank"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#hasDelay -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/mason.owl#hasDelay">
+        <rdfs:label xml:lang="en">has delay</rdfs:label>
+        <rdfs:comment xml:lang="en">Allowed delay for an operation achievement</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#Operation"/>
+        <rdfs:range rdf:resource="&xsd;positiveInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#hasDuration -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/mason.owl#hasDuration">
+        <rdfs:label xml:lang="en">has duration</rdfs:label>
+        <rdfs:comment xml:lang="en">Operation duration, in minutes</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#Operation"/>
+        <rdfs:range rdf:resource="&xsd;positiveInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#hasRugosity -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/mason.owl#hasRugosity">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label rdf:datatype="&xsd;string">has rugosity</rdfs:label>
+        <rdfs:comment>Defines the roughness index of a geometric flaw</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;float"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#GeometricFlaw3rdOrder"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#GeometricFlaw4thOrder"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#hasVolume -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/mason.owl#hasVolume">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has volume</rdfs:label>
+        <rdfs:comment>Defines the volume of a part</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;float"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Blank"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#FinishedPart"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#operatingRate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/mason.owl#operatingRate">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">operating rate</rdfs:label>
+        <rdfs:comment xml:lang="en">A priori operating rate for a machine</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#MachineTool"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#resourceID -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/mason.owl#resourceID">
+        <rdfs:label xml:lang="en">resource ID</rdfs:label>
+        <rdfs:comment xml:lang="en">Generic slot to give an identifier to a resource. Required to be unique. </rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#Resource"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#resourceName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/mason.owl#resourceName">
+        <rdfs:label xml:lang="en">resource name</rdfs:label>
+        <rdfs:comment>Name a resource</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/mason.owl#Resource"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ASx -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ASx">
+        <rdfs:label rdf:datatype="&xsd;string">A-Sx</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#CastedAluminium"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#AUy -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#AUy">
+        <rdfs:label rdf:datatype="&xsd;string">A-Uy</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#CastedAluminium"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Abrasion -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Abrasion">
+        <rdfs:label rdf:datatype="&xsd;string">Abrasion</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Shearing_Operation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#previousOperation"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#OxidationProjection"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#AbrasivePolishing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#AbrasivePolishing">
+        <rdfs:label xml:lang="en">Abrasive polishing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Addition -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Addition">
+        <rdfs:label xml:lang="en">Addition</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#MechanicalSmallVariationsOfVolume"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Alloy -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Alloy">
+        <rdfs:label xml:lang="en">Alloy</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RawMaterial"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#AlloySteel -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#AlloySteel">
+        <rdfs:label xml:lang="en">Alloy steel</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Steel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Aluminium -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Aluminium">
+        <rdfs:label xml:lang="en">Aluminium</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RawMaterial"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#AluminiumAlloy -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#AluminiumAlloy">
+        <rdfs:label xml:lang="en">Aluminim alloy</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Alloy"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#isMachinableByProcess"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Centrifugation"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#OxidationProjection"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#SlowColdForming"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#SlowHotForming"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#UnderPressure"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#WithGravity"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Annealing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Annealing">
+        <rdfs:label xml:lang="en">Annealing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#HeatTreatment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#AnodicDissolving -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#AnodicDissolving">
+        <rdfs:label xml:lang="en">Anodic dissolving</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Oxidation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Anodizing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Anodizing">
+        <rdfs:label xml:lang="en">Anodizing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Electrolysing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Assembly -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Assembly">
+        <rdfs:label xml:lang="en">Assembly</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#ManufacturingOperation"/>
+        <rdfs:comment>Represent assembly manufacturing operations</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#AssemblyEntity -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#AssemblyEntity">
+        <rdfs:label xml:lang="en">Assembly entity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Entity"/>
+        <rdfs:comment>Represents assebled parts by a manufacturing operation</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Bending -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Bending">
+        <rdfs:label xml:lang="en">Bending</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#SlowColdForming"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Blank -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Blank">
+        <rdfs:label xml:lang="en">Blank</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Blasting -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Blasting">
+        <rdfs:label xml:lang="en">Blasting</rdfs:label>
+        <rdfs:label xml:lang="fr">Pression</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#MechanicalSmallVariationsOfVolume"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#BoardDropHammer -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#BoardDropHammer">
+        <rdfs:label xml:lang="en">Board drop hammer</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#FormingMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Boring -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Boring">
+        <rdfs:label xml:lang="en">Boring</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RevolutionEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Broaching -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Broaching">
+        <rdfs:label xml:lang="en">Broaching</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#BrutalHotForming -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#BrutalHotForming">
+        <rdfs:label xml:lang="en">Brutal hot forming</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Forming"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#previousOperation"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#BrutalHotForming"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#OxidationProjection"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#SlowColdForming"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Building -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Building">
+        <rdfs:label xml:lang="en">Building</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#GeographicResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#BuildingZone -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#BuildingZone">
+        <rdfs:label xml:lang="en">Building zone</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#GeographicResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#CamPress -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#CamPress">
+        <rdfs:label xml:lang="en">Cam press</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#FormingMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Carbonitriding -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Carbonitriding">
+        <rdfs:label xml:lang="en">Carbonitriding</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Diffusion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#CastedAluminium -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#CastedAluminium">
+        <rdfs:label xml:lang="en">Casted aluminium</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#AluminiumAlloy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Cementation -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Cementation">
+        <rdfs:label xml:lang="en">Cementation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Diffusion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Centrifugation -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Centrifugation">
+        <rdfs:label xml:lang="en">Centrifugation</rdfs:label>
+        <rdfs:label xml:lang="fr">Centrifugation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#FusionNoLossOfVolume"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Chamfer -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Chamfer">
+        <rdfs:label xml:lang="en">Chamfer</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RevolutionEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ChillCasting -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ChillCasting">
+        <rdfs:label xml:lang="en">Chill casting</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#WithGravity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ChromiumPlating -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ChromiumPlating">
+        <rdfs:label xml:lang="en">Chromium plating</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Electrolysing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#CircularShoulder -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#CircularShoulder">
+        <rdfs:label xml:lang="en">Circular shoulder</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RevolutionEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Circular_slot -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Circular_slot">
+        <rdfs:label xml:lang="en">Slot</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RevolutionEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ColdDrawing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ColdDrawing">
+        <rdfs:label xml:lang="en">Cold drawing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#SlowColdForming"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ColdPressing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ColdPressing">
+        <rdfs:label xml:lang="en">Cold pressing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#SlowColdForming"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ColdRolling -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ColdRolling">
+        <rdfs:label xml:lang="en">Cold rolling</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#SlowColdForming"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ComplexShapeOfRevolution -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ComplexShapeOfRevolution">
+        <rdfs:label xml:lang="en">Complex shape of revolution</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RevolutionEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ComplexShapeOfRevolutionWithCounterdraught -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ComplexShapeOfRevolutionWithCounterdraught">
+        <rdfs:label xml:lang="en">Complex shape of revolution with counterdraught</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#ComplexShapeOfRevolution"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ComplexShapeOfRevolutionWithDraught -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ComplexShapeOfRevolutionWithDraught">
+        <rdfs:label xml:lang="en">Complex shape of revolution with draught</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#ComplexShapeOfRevolution"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ComplexShapeOfRevolutionWithDraughtAndCounterdraught -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ComplexShapeOfRevolutionWithDraughtAndCounterdraught">
+        <rdfs:label xml:lang="en">Complex shape of revolution with draught and counterdraught</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#ComplexShapeOfRevolution"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Cone -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Cone">
+        <rdfs:label rdf:datatype="&xsd;string">Cone</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RevolutionEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ContinousCast -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ContinousCast">
+        <rdfs:label xml:lang="en">Continuous cast</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#WithGravity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Control -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Control">
+        <rdfs:label rdf:datatype="&xsd;string">Control</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#ManufacturingOperation"/>
+        <rdfs:comment>Represent control manufacturing operations</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#CopperAlloy -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#CopperAlloy">
+        <rdfs:label xml:lang="en">Copper alloy</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Alloy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Counterbore -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Counterbore">
+        <rdfs:label xml:lang="en">Counterbore</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RevolutionEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Covering -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Covering">
+        <rdfs:label xml:lang="en">Covering</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Addition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Cutting -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Cutting">
+        <rdfs:label xml:lang="en">Cutting</rdfs:label>
+        <rdfs:label xml:lang="fr">Coupe</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Shearing_Operation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#previousOperation"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#OxidationProjection"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Cylindre -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Cylindre">
+        <rdfs:label xml:lang="en">Cylindre</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RevolutionEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Diffusion -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Diffusion">
+        <rdfs:label xml:lang="en">Diffusion</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#PhysicochemicalSmallVariationsOfVolume"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Drill -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Drill">
+        <rdfs:label xml:lang="en">Drill</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Tool"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Drilling -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Drilling">
+        <rdfs:label xml:lang="en">Drilling</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Electroerosion -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Electroerosion">
+        <rdfs:label xml:lang="en">Electroerosion</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Electrolysing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Electrolysing">
+        <rdfs:label xml:lang="en">Electrolysing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#PhysicochemicalSmallVariationsOfVolume"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ElectrolyticRipping -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ElectrolyticRipping">
+        <rdfs:label xml:lang="en">Electrolytic ripping</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#previousOperation"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Electron_beam -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Electron_beam">
+        <rdfs:label xml:lang="en">Electron beam</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ElectroplatingBath -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ElectroplatingBath">
+        <rdfs:label xml:lang="en">Electroplating bath</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#HeatOrSurfaceTreatmentMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Electropolishing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Electropolishing">
+        <rdfs:label xml:lang="en">Electropolishing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Engraving -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Engraving">
+        <rdfs:label xml:lang="en">Engraving</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Entity -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Entity">
+        <rdfs:label xml:lang="en">Entity</rdfs:label>
+        <rdfs:comment>Entity class contains helper concepts for the description of manufacturing process results and describes geometric flaw and entity, assembly entity and raw materials</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#EntityGeometricFlaw -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#EntityGeometricFlaw">
+        <rdfs:label xml:lang="en">Geometric flaw</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#GeometricFlaw"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective">
+        <rdfs:label xml:lang="en">Evaporative or projective</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Fusion_Loss_of_volume"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#previousOperation"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Extrusion -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Extrusion">
+        <rdfs:label rdf:datatype="&xsd;string">Extrusion</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#SlowColdForming"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#FinishedPart -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#FinishedPart">
+        <rdfs:label rdf:datatype="&xsd;string">Finished part</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Fluoturning -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Fluoturning">
+        <rdfs:label rdf:datatype="&xsd;string">Fluoturning</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#SlowColdForming"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Folding -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Folding">
+        <rdfs:label xml:lang="en">Folding</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#SlowColdForming"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#FoldingMachine -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#FoldingMachine">
+        <rdfs:label xml:lang="en">Folding machine</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#FormingMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Forging -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Forging">
+        <rdfs:label rdf:datatype="&xsd;string">Forging</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#BrutalHotForming"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ForgingDieAndPunch -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ForgingDieAndPunch">
+        <rdfs:label xml:lang="en">Forging die and punch</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Tool"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Forming -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Forming">
+        <rdfs:label xml:lang="en">Tooling operation by forming</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#MechanicalNoLossOfVolume"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#FormingMachine -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#FormingMachine">
+        <rdfs:label xml:lang="en">Forming machine-tool</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#MachineTool"/>
+        <rdfs:comment>Describes machines tools related to forming processes</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#FoundingMachine -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#FoundingMachine">
+        <rdfs:label xml:lang="en">Founding machine</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#MachineTool"/>
+        <rdfs:comment>Describes moulding and injections machines</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#FoundingPatternAndMould -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#FoundingPatternAndMould">
+        <rdfs:label xml:lang="en">Founding pattern and mould</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Tool"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#FusionNoLossOfVolume -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#FusionNoLossOfVolume">
+        <rdfs:label xml:lang="en">Fusion</rdfs:label>
+        <rdfs:label xml:lang="fr">Fusion</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#ThermalNoLossOfVolume"/>
+        <rdfs:comment xml:lang="fr">Opération de fusion, volume conservé</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Fusion_Loss_of_volume -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Fusion_Loss_of_volume">
+        <rdfs:label xml:lang="en">Fusion</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Thermal_Loss_of_volume"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#GeographicResource -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#GeographicResource">
+        <rdfs:label xml:lang="en">Geographic resource</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Resource"/>
+        <rdfs:comment>Represents various geographic resources such as buildings, shop floors, workshops and sites.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#GeometricEntity -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#GeometricEntity">
+        <rdfs:label xml:lang="en">Geometric entity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Entity"/>
+        <rdfs:comment>Represents abstract geometric features</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#GeometricEntityForManufacturing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#GeometricEntityForManufacturing">
+        <rdfs:label xml:lang="en">Geometric entity for manufacturing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Entity"/>
+        <rdfs:comment xml:lang="en">Helpers for describing part&apos;s geometry</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#GeometricFlaw -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#GeometricFlaw">
+        <rdfs:label xml:lang="en">Geometric flaw</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Entity"/>
+        <rdfs:comment>Describes the Geometric flaw of an entity</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#GeometricFlaw1stOrder -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#GeometricFlaw1stOrder">
+        <rdfs:label xml:lang="en">Geometric flaw of 1st order</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#GeometricFlaw"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#GeometricFlaw2ndOrder -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#GeometricFlaw2ndOrder">
+        <rdfs:label xml:lang="en">Geometric flaw of 2nd order</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#GeometricFlaw"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#GeometricFlaw3rdOrder -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#GeometricFlaw3rdOrder">
+        <rdfs:label xml:lang="en">Geometric flaw of 3rd order</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#GeometricFlaw"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#GeometricFlaw4thOrder -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#GeometricFlaw4thOrder">
+        <rdfs:label xml:lang="en">Geometric flaw of 4th order</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#GeometricFlaw"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#GeometricFlawBetweenEntities -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#GeometricFlawBetweenEntities">
+        <rdfs:label xml:lang="en">Geometric flaw between entities</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#GeometricFlaw"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Glass -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Glass">
+        <rdfs:label xml:lang="en">Glass</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RawMaterial"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Grinding -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Grinding">
+        <rdfs:label xml:lang="en">Grinding</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#GrindingMachine -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#GrindingMachine">
+        <rdfs:label xml:lang="en">Grinding machine</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Shearing_machine-tool"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#enablesRealisationOf"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Nibbling"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Planing"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Handling -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Handling">
+        <rdfs:label xml:lang="en">Handling</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#LogisticOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#HandlingMachine -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#HandlingMachine">
+        <rdfs:label xml:lang="en">Handling machine</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#MachineResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#enablesRealisationOf"/>
+                <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/mason.owl#LogisticOperation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#HandlingOperator -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#HandlingOperator">
+        <rdfs:label xml:lang="en">Handling operator</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#HumanResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Hardening -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Hardening">
+        <rdfs:label xml:lang="en">Hardening</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#HeatTreatment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#HeatOrSurfaceTreatmentMachine -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#HeatOrSurfaceTreatmentMachine">
+        <rdfs:label xml:lang="en">Heat or surface treatment machine</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#MachineTool"/>
+        <rdfs:comment>Represent machines related to surface treatment or heat treatment</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#HeatTreatment -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#HeatTreatment">
+        <rdfs:label xml:lang="en">Heat treatment</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#ThermalSmallVariationsOfVolume"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#HoldOn -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#HoldOn">
+        <rdfs:label xml:lang="en">Hold on</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#MachineResource"/>
+        <rdfs:comment xml:lang="en">Virtual machine corresponding to part waiting for futher machining</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Hole -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Hole">
+        <rdfs:label xml:lang="en">Hole</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RevolutionEntity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#isMachinableByProcess"/>
+                <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/mason.owl#Drilling"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Homogenizing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Homogenizing">
+        <rdfs:label xml:lang="en">Homogenizing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#HeatTreatment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#HumanOperation -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#HumanOperation">
+        <rdfs:label xml:lang="en">Human operation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Operation"/>
+        <rdfs:comment>Describes a process which is executed by a human</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#HumanResource -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#HumanResource">
+        <rdfs:label xml:lang="en">Human resource</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Resource"/>
+        <rdfs:comment>Represents the human resources of an Business entity</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Hydroforming -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Hydroforming">
+        <rdfs:label xml:lang="en">Hydroforming</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#SlowColdForming"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#HydrostaticPress -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#HydrostaticPress">
+        <rdfs:label xml:lang="en">Hydrostatic press</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#FormingMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#InjectionCasting -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#InjectionCasting">
+        <rdfs:label xml:lang="en">Injection casting</rdfs:label>
+        <rdfs:label xml:lang="fr">Moulage par injection</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#UnderPressure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#InjectionMachine -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#InjectionMachine">
+        <rdfs:label xml:lang="en">Injection machine</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#FoundingMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#KnuckelPress -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#KnuckelPress">
+        <rdfs:label xml:lang="en">Knuckel press</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#FormingMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Lapping -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Lapping">
+        <rdfs:label xml:lang="en">Lapping</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Laser -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Laser">
+        <rdfs:label rdf:datatype="&xsd;string">Laser</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Lathe -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Lathe">
+        <rdfs:label xml:lang="en">Lathe</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Shearing_machine-tool"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#enablesRealisationOf"/>
+                <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/mason.owl#Turning"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#LaunchingOperation -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#LaunchingOperation">
+        <rdfs:label xml:lang="en">Launching operation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Operation"/>
+        <rdfs:comment>Describes processes related to launching and preparing operations</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#LinearEntity -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#LinearEntity">
+        <rdfs:label xml:lang="en">Linear entity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#GeometricEntityForManufacturing"/>
+        <rdfs:comment>Describes a Linear entity</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#LogisticOperation -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#LogisticOperation">
+        <rdfs:label xml:lang="en">Logistic operation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Operation"/>
+        <rdfs:comment>Describes processes related to logistic operations</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#LossOfVolume -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#LossOfVolume">
+        <rdfs:label xml:lang="en">Loss of volume</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#ManufacturingOperation"/>
+        <rdfs:comment>Describes  manufacturing operations which affects loss of volume</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#MachinePreparing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#MachinePreparing">
+        <rdfs:label xml:lang="en">Machine preparing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#LaunchingOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#MachineResource -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#MachineResource">
+        <rdfs:label xml:lang="en">Machine resource</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#MaterialResource"/>
+        <rdfs:comment>Describes the machine resources</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#MachineTool -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#MachineTool">
+        <rdfs:label xml:lang="en">Machine Tool</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#MachineResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#enablesRealisationOf"/>
+                <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/mason.owl#ManufacturingOperation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Contains a wide variety of machines</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#MachiningCentre4Axis -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#MachiningCentre4Axis">
+        <rdfs:label xml:lang="en">Machining centre 4 axis</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Shearing_machine-tool"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#MachiningCentre5Axis -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#MachiningCentre5Axis">
+        <rdfs:label xml:lang="en">Machining centre 5 axis</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Shearing_machine-tool"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#MagnesiumAlloy -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#MagnesiumAlloy">
+        <rdfs:label xml:lang="en">Magnesium alloy</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Alloy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Maintenance -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Maintenance">
+        <rdfs:label rdf:datatype="&xsd;string">Maintenance</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#LogisticOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ManualMoulding -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ManualMoulding">
+        <rdfs:label xml:lang="en">Manual moulding</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#FoundingMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ManufacturingOperation -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ManufacturingOperation">
+        <rdfs:label xml:lang="en">Manufacturing operation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Operation"/>
+        <rdfs:comment>Describes the manufacturing operations</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#MaterialResource -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#MaterialResource">
+        <rdfs:label xml:lang="en">Material resource</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Resource"/>
+        <rdfs:comment>Represent the material resources such as machines and tools</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#MechanicalNoLossOfVolume -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#MechanicalNoLossOfVolume">
+        <rdfs:label xml:lang="en">Mechanical</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#NoLossOfVolume"/>
+        <rdfs:comment xml:lang="en">Mechanical tooling operation, volume kept</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#MechanicalSmallVariationsOfVolume -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#MechanicalSmallVariationsOfVolume">
+        <rdfs:label xml:lang="en">Mechanical</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#SmallVariationsOfVolume"/>
+        <rdfs:comment xml:lang="en">Mechanical manufacturing operation, with small variations of volume</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Mechanical_Loss_of_volume -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Mechanical_Loss_of_volume">
+        <rdfs:label xml:lang="en">Mechanical</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#LossOfVolume"/>
+        <rdfs:comment xml:lang="en">Mechanical manufacturing operation, with loss of volume</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Milling -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Milling">
+        <rdfs:label xml:lang="en">Milling</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#MillingMachine -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#MillingMachine">
+        <rdfs:label xml:lang="en">Milling machine</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Shearing_machine-tool"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#MillingMachine4Axis -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#MillingMachine4Axis">
+        <rdfs:label xml:lang="en">Milling machine 4 axis</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Shearing_machine-tool"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#MouldingMachine -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#MouldingMachine">
+        <rdfs:label xml:lang="en">Moulding machine</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#FoundingMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Nibbling -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Nibbling">
+        <rdfs:label xml:lang="en">Nibbling</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Nickel-plating -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Nickel-plating">
+        <rdfs:label rdf:datatype="&xsd;string">Nickel-plating</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Electrolysing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#NickelAlloy -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#NickelAlloy">
+        <rdfs:label xml:lang="en">Nickel alloy</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Alloy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Nitriding -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Nitriding">
+        <rdfs:label xml:lang="en">Nitriding</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Diffusion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#NoLossOfVolume -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#NoLossOfVolume">
+        <rdfs:label xml:lang="en">No loss of volume</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#ManufacturingOperation"/>
+        <rdfs:comment>Describes  manufacturing operations which affects loss of volume</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#OpenContainerTruck -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#OpenContainerTruck">
+        <rdfs:label>Open container truck</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#TruckResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Operation -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Operation">
+        <rdfs:comment>Operation class describes concepts related to processes</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Operator -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Operator">
+        <rdfs:label xml:lang="en">Operator</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#HumanResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Oven -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Oven">
+        <rdfs:label xml:lang="en">Oven</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#HeatOrSurfaceTreatmentMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Oxidation -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Oxidation">
+        <rdfs:label rdf:datatype="&xsd;string">Oxidation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#PhysicochemicalLossOfVolume"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#OxidationProjection -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#OxidationProjection">
+        <rdfs:label xml:lang="en">Oxidation Projection</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Oxidation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#previousOperation"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#OxidationProjection"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#OxygenCutting -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#OxygenCutting">
+        <rdfs:label xml:lang="en">Oxygen cutting</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#OxidationProjection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Paint -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Paint">
+        <rdfs:label xml:lang="en">Paint</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Covering"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#PaintingStation -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#PaintingStation">
+        <rdfs:label xml:lang="en">Painting station</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#HeatOrSurfaceTreatmentMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Part -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Part">
+        <rdfs:label rdf:datatype="&xsd;string">Part</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#AssemblyEntity"/>
+        <rdfs:comment>Describes an asselbed part</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Phosphatization -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Phosphatization">
+        <rdfs:label xml:lang="en">Phosphatization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Electrolysing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#PhysicochemicalLossOfVolume -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#PhysicochemicalLossOfVolume">
+        <rdfs:label xml:lang="en">Physicochemical</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#LossOfVolume"/>
+        <rdfs:comment>Physiochemical manufacturing operation, with loss of volume</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#PhysicochemicalSmallVariationsOfVolume -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#PhysicochemicalSmallVariationsOfVolume">
+        <rdfs:label xml:lang="en">Physicochemical</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#SmallVariationsOfVolume"/>
+        <rdfs:comment xml:lang="en">Physicochemical manufacturing operation, with small variations of volume</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Plan -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Plan">
+        <rdfs:label xml:lang="en">Plan</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#LinearEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Planing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Planing">
+        <rdfs:label xml:lang="en">Planing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Plasma -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Plasma">
+        <rdfs:label rdf:datatype="&xsd;string">Plasma</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#PlasmaTrimmingMachine -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#PlasmaTrimmingMachine">
+        <rdfs:label xml:lang="en">Plasma trimming machine</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Shearing_machine-tool"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Plastic -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Plastic">
+        <rdfs:label rdf:datatype="&xsd;string">Plastic</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RawMaterial"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Pocket -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Pocket">
+        <rdfs:label xml:lang="en">Pocket</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#LinearEntity"/>
+        <rdfs:comment>Pockets features</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#PocketComplexBottom -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#PocketComplexBottom">
+        <rdfs:label xml:lang="en">Pocket with complex bottom</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Pocket"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#PocketFlatBottom -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#PocketFlatBottom">
+        <rdfs:label xml:lang="en">Pocket with flat bottom</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Pocket"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#PocketFlatBottomWithCounterdraught -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#PocketFlatBottomWithCounterdraught">
+        <rdfs:label xml:lang="en">Pocket, flat bottom, with counterdraught</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#PocketFlatBottom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#PocketFlatBottomWithDraught -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#PocketFlatBottomWithDraught">
+        <rdfs:label xml:lang="en">Pocket, flat bottom, with draught</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#PocketFlatBottom"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#isMachinableByProcess"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#BrutalHotForming"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#SlowHotForming"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#UnderPressure"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#WithGravity"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#PocketFlatBottomWithoutDraught -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#PocketFlatBottomWithoutDraught">
+        <rdfs:label xml:lang="en">Pocket, flat bottom, without draught</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#PocketFlatBottom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Polishing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Polishing">
+        <rdfs:label>Polishing tool</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Tool"/>
+        <rdfs:comment>Polishing tool</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#PreparationOperator -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#PreparationOperator">
+        <rdfs:label xml:lang="en">Preparation operator</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#HumanResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ProceduresExpert -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ProceduresExpert">
+        <rdfs:label xml:lang="en">Procedures expert</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#HumanResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Programming -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Programming">
+        <rdfs:label rdf:datatype="&xsd;string">Programming</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#HumanOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ProgrammingOperator -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ProgrammingOperator">
+        <rdfs:label xml:lang="en">Programming operator</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#HumanResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Punching -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Punching">
+        <rdfs:label xml:lang="en">Punching</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#PunchingPress -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#PunchingPress">
+        <rdfs:label xml:lang="en">Punching press</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#FormingMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#RawMaterial -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#RawMaterial">
+        <rdfs:label xml:lang="en">Raw material</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Entity"/>
+        <rdfs:comment>Describes raw material features of a part</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Resource -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Resource">
+        <rdfs:label rdf:datatype="&xsd;string">Resource</rdfs:label>
+        <rdfs:comment xml:lang="en">Resource class contains geographic, human, material and truck resources</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#RevolutionEntity -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#RevolutionEntity">
+        <rdfs:label xml:lang="en">Revolution entity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#GeometricEntityForManufacturing"/>
+        <rdfs:comment>Describes more complex manufacturing geometric entities</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#RollingMill -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#RollingMill">
+        <rdfs:label xml:lang="en">Rolling mill</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#FormingMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Rotoforming -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Rotoforming">
+        <rdfs:label rdf:datatype="&xsd;string">Rotoforming</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Centrifugation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#previousOperation"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#OxidationProjection"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Rotoforming"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#SlowColdForming"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#SlowHotForming"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#SandBlasting -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#SandBlasting">
+        <rdfs:label xml:lang="en">Sand blasting</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Blasting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#SandCasting -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#SandCasting">
+        <rdfs:label xml:lang="en">Sand casting</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#WithGravity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Scheduling -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Scheduling">
+        <rdfs:label rdf:datatype="&xsd;string">Scheduling</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#HumanOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ScrewPress -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ScrewPress">
+        <rdfs:label xml:lang="en">Screw press</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#FormingMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Semi-finishedPart -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Semi-finishedPart">
+        <rdfs:label xml:lang="en">Semi-finished part</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#MaterialResource"/>
+        <rdfs:comment xml:lang="en">Concrete part, being worked</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Set -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Set">
+        <rdfs:label rdf:datatype="&xsd;string">Set</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#AssemblyEntity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#assembles"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Describes a produced Set</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Shape -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Shape">
+        <rdfs:label xml:lang="en">Shape</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#GeometricEntity"/>
+        <rdfs:comment>Describes the geometric feature, Shape</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Shearing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Shearing">
+        <rdfs:label xml:lang="en">Shearing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Shearing_Operation -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Shearing_Operation">
+        <rdfs:label xml:lang="en">Shearing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Mechanical_Loss_of_volume"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Shearing_machine-tool -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Shearing_machine-tool">
+        <rdfs:label xml:lang="en">Shearing machine-tool</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#MachineTool"/>
+        <rdfs:comment>Represents machines with shearing capabilities such as milling or trimming machines</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ShopFloor -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ShopFloor">
+        <rdfs:label xml:lang="en">Shop floor</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#BuildingZone"/>
+        <rdfs:comment>Factory</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ShotBlasting -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ShotBlasting">
+        <rdfs:label xml:lang="en">Shot blasting</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Blasting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ShotBlastingMachine -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ShotBlastingMachine">
+        <rdfs:label xml:lang="en">Shot blasting machine</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#HeatOrSurfaceTreatmentMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Shoulder -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Shoulder">
+        <rdfs:label xml:lang="en">Shoulder</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#LinearEntity"/>
+        <rdfs:comment>Describes a Shoulder geometry</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Site -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Site">
+        <rdfs:label rdf:datatype="&xsd;string">Site</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#GeographicResource"/>
+        <rdfs:comment>An area of ground on which something is constructed</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Slot -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Slot">
+        <rdfs:label xml:lang="en">Slot</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#LinearEntity"/>
+        <rdfs:comment>Represents Slots types</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#SlowColdForming -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#SlowColdForming">
+        <rdfs:label xml:lang="en">Slow cold forming</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Forming"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#previousOperation"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#OxidationProjection"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#SlowColdForming"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#SlowHotForming -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#SlowHotForming">
+        <rdfs:label xml:lang="en">Slow hot forming</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Forming"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#previousOperation"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#BrutalHotForming"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#OxidationProjection"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#SlowColdForming"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#SlowHotForming"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#SmallVariationsOfVolume -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#SmallVariationsOfVolume">
+        <rdfs:label xml:lang="en">Small variations of volume</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#ManufacturingOperation"/>
+        <rdfs:comment>Describes  manufacturing operations which affects small variations of volume</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#StainlessSteel -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#StainlessSteel">
+        <rdfs:label xml:lang="en">Stainless steel</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Steel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Steel -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Steel">
+        <rdfs:label xml:lang="en">Steel</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RawMaterial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#isMachinableByProcess"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#BrutalHotForming"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Centrifugation"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#OxidationProjection"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#SlowColdForming"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#SlowHotForming"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#WithGravity"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Stock -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Stock">
+        <rdfs:label rdf:datatype="&xsd;string">Stock</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#BuildingZone"/>
+        <rdfs:comment>Location where  goods or merchandise kept </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Symmetry -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Symmetry">
+        <rdfs:label rdf:datatype="&xsd;string">Symmetry</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#GeometricEntity"/>
+        <rdfs:comment>Describes the geometric feature, Symmetry</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#System -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#System">
+        <rdfs:label rdf:datatype="&xsd;string">System</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#AssemblyEntity"/>
+        <rdfs:comment>Describes a created System</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#TSlot -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#TSlot">
+        <rdfs:label xml:lang="en">T slot</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Slot"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Tap -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Tap">
+        <rdfs:label xml:lang="en">Tap</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RevolutionEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#TemperDrawing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#TemperDrawing">
+        <rdfs:label xml:lang="en">Temper drawing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#HeatTreatment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ThermalNoLossOfVolume -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ThermalNoLossOfVolume">
+        <rdfs:label xml:lang="en">Thermal</rdfs:label>
+        <rdfs:label xml:lang="fr">Thermique</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#NoLossOfVolume"/>
+        <rdfs:comment xml:lang="en">Thermal tooling operation, volume kept</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Opération d&apos;usinage thermique, volume conservé</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ThermalSmallVariationsOfVolume -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ThermalSmallVariationsOfVolume">
+        <rdfs:label xml:lang="en">Thermal</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#SmallVariationsOfVolume"/>
+        <rdfs:comment xml:lang="en">Thermal manufacturing operation, with small variations of volume</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Thermal_Loss_of_volume -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Thermal_Loss_of_volume">
+        <rdfs:label xml:lang="en">Thermal</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#LossOfVolume"/>
+        <rdfs:comment>Thermal manufacturing operation, with loss of volume</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Thermoplastic -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Thermoplastic">
+        <rdfs:label rdf:datatype="&xsd;string">Thermoplastic</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Plastic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Thermosetting -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Thermosetting">
+        <rdfs:label rdf:datatype="&xsd;string">Thermosetting</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Plastic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Threading -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Threading">
+        <rdfs:label xml:lang="en">Threading</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RevolutionEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#TitanAlloy -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#TitanAlloy">
+        <rdfs:label xml:lang="en">Titan alloy</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Alloy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Tool -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Tool">
+        <rdfs:label rdf:datatype="&xsd;string">Tool</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#MaterialResource"/>
+        <rdfs:comment>An implement, used to carry out a particular operation</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Topology -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Topology">
+        <rdfs:label xml:lang="en">Topology</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#GeometricEntity"/>
+        <rdfs:comment>Describes the geometric feature, Topology</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#TruckResource -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#TruckResource">
+        <rdfs:label>Truck resource</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Resource"/>
+        <rdfs:comment>Represents the Truck resources of a company</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Turning -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Turning">
+        <rdfs:label xml:lang="en">Turning</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#TurningTool -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#TurningTool">
+        <rdfs:label xml:lang="en">Turning tool</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Tool"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Ultrasonics -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Ultrasonics">
+        <rdfs:label xml:lang="en">Ultrasonics</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#UnderPressure -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#UnderPressure">
+        <rdfs:label xml:lang="en">Under pressure</rdfs:label>
+        <rdfs:label xml:lang="fr">Sous pression</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#FusionNoLossOfVolume"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#previousOperation"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#OxidationProjection"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#UnderPressure"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#VSlot -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#VSlot">
+        <rdfs:label xml:lang="en">V slot</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Slot"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Varnish -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Varnish">
+        <rdfs:label xml:lang="en">Varnish</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Covering"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#WarmDrawing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#WarmDrawing">
+        <rdfs:label xml:lang="en">Warm drawing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#SlowHotForming"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#WarmPressing -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#WarmPressing">
+        <rdfs:label xml:lang="en">Warm pressing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#BrutalHotForming"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#WarmRolling -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#WarmRolling">
+        <rdfs:label xml:lang="en">Warm rolling</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#SlowHotForming"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#WaterJet -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#WaterJet">
+        <rdfs:label xml:lang="en">Water jet</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#WaterTrimmingMachine -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#WaterTrimmingMachine">
+        <rdfs:label xml:lang="en">Water trimming machine</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Shearing_machine-tool"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#WedgePress -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#WedgePress">
+        <rdfs:label xml:lang="en">Wedge press</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#FormingMachine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#WeldingAluminium -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#WeldingAluminium">
+        <rdfs:label xml:lang="en">Welding aluminium</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#AluminiumAlloy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#WithGravity -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#WithGravity">
+        <rdfs:label xml:lang="en">With gravity</rdfs:label>
+        <rdfs:label xml:lang="fr">Par gravité</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#FusionNoLossOfVolume"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/mason.owl#previousOperation"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Abrasion"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#AnodicDissolving"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Cutting"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#Evaporative_or_Projective"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#OxidationProjection"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#SlowHotForming"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/mason.owl#WithGravity"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Wood -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Wood">
+        <rdfs:label xml:lang="en">Wood</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#RawMaterial"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Workshop -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#Workshop">
+        <rdfs:label xml:lang="en">Workshop</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#BuildingZone"/>
+        <rdfs:comment>Building in which goods are manufactured or repaired</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ZincAlloy -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/mason.owl#ZincAlloy">
+        <rdfs:label xml:lang="en">Zinc alloy</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/mason.owl#Alloy"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Crossing -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#Crossing">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Topology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Extents -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#Extents">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Topology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#FlatShape -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#FlatShape">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Shape"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#HaveAnAngleWith -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#HaveAnAngleWith">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Topology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Open -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#Open">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Topology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Outside -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#Outside">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Topology"/>
+        <rdfs:label xml:lang="fr">Outside</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#PrismaticShape -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#PrismaticShape">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Shape"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#RevolutionShape -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#RevolutionShape">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Shape"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#Tangent -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#Tangent">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Topology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#XSymmetryAxis -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#XSymmetryAxis">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Symmetry"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#XYSymmetryPlan -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#XYSymmetryPlan">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Symmetry"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#XZSymmetryPlan -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#XZSymmetryPlan">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Symmetry"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#YSymmetryAxis -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#YSymmetryAxis">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Symmetry"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#YZSymmetryPlan -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#YZSymmetryPlan">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Symmetry"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#ZSymmetryAxis -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#ZSymmetryAxis">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Symmetry"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#closed -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#closed">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Topology"/>
+        <rdfs:label xml:lang="en">Closed</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#complexShape -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#complexShape">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Shape"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#inside -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#inside">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Topology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#isParallelTo -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#isParallelTo">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Topology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#isPerpendicularTo -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#isPerpendicularTo">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Topology"/>
+        <rdfs:label xml:lang="en">is perpendicular to</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#noSymmetry -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#noSymmetry">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Symmetry"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/mason.owl#startsOn -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/mason.owl#startsOn">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/mason.owl#Topology"/>
+        <rdfs:label xml:lang="en">starts on</rdfs:label>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
